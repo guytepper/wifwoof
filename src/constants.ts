@@ -1,11 +1,3 @@
-import { PriceConfig } from "./types";
-
-export const PRICE_CONFIG: PriceConfig = {
-  min: 2.1332,
-  max: 2.1599,
-  interval: 10000,
-};
-
 export const MOTION_SPRING = {
   type: "spring" as const,
   damping: 20,
@@ -16,8 +8,8 @@ export const MOTION_SPRING = {
 export const PRICE_FORMAT = {
   style: "currency" as const,
   currency: "USD",
-  minimumFractionDigits: 4,
-  maximumFractionDigits: 4,
+  minimumFractionDigits: 5,
+  maximumFractionDigits: 5,
 };
 
 export const ROTATION_ANGLES = {
