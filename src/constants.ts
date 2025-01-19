@@ -3,7 +3,7 @@ import { PriceConfig } from "./types";
 export const PRICE_CONFIG: PriceConfig = {
   min: 2.1332,
   max: 2.1599,
-  interval: 2500,
+  interval: 10000,
 };
 
 export const MOTION_SPRING = {

@@ -1,25 +1,33 @@
 import { useState, useEffect } from "react";
-import { PRICE_CONFIG } from "../constants";
 
 import bark from "@/assets/bark.mp3";
-const barkSound = new Audio(bark);
+import sadDog from "@/assets/sad-dog.mp3";
+import { ref, onValue } from "firebase/database";
+import { db } from "@/config/firebase-config";
 
-export const usePrice = () => {
+const barkSound = new Audio(bark);
+const sadDogSound = new Audio(sadDog);
+
+const priceRef = ref(db, "price");
+
+export const usePrice = ({ mute }: { mute: boolean }) => {
   const [price, setPrice] = useState(0);
   const [prevPrice, setPrevPrice] = useState(0);
   const [bgColor, setBgColor] = useState("var(--blue-9)");
-  const [shouldPop, setShouldPop] = useState(false);
+
+  const [shouldPopHappy, setShouldPopHappy] = useState(false);
+  const [shouldPopSad, setShouldPopSad] = useState(false);
 
   // Dummy price generator
   useEffect(() => {
-    const interval = setInterval(() => {
-      const newPrice =
-        Math.random() * (PRICE_CONFIG.max - PRICE_CONFIG.min) +
-        PRICE_CONFIG.min;
-      setPrice(newPrice);
-    }, PRICE_CONFIG.interval);
+    const unsubscribe = onValue(priceRef, (snapshot) => {
+      const { rate } = snapshot.val() as { rate: number };
+      setPrice(rate);
+    });
 
-    return () => clearInterval(interval);
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -28,15 +36,25 @@ export const usePrice = () => {
       if (percentageChange >= 0.1) {
         setBgColor("var(--grass-9)");
 
-        barkSound.play();
-        setShouldPop(true);
-        setTimeout(() => setShouldPop(false), 300);
+        if (!mute) {
+          barkSound.play();
+        }
+
+        setShouldPopHappy(true);
+        setTimeout(() => setShouldPopHappy(false), 300);
       } else if (percentageChange <= -0.1) {
         setBgColor("var(--tomato-9)");
+
+        if (!mute) {
+          sadDogSound.play();
+        }
+
+        setShouldPopSad(true);
+        setTimeout(() => setShouldPopSad(false), 500);
       }
     }
     setPrevPrice(price);
-  }, [price, prevPrice]);
+  }, [price, prevPrice, mute]);
 
-  return { price, bgColor, shouldPop };
+  return { price, bgColor, shouldPopHappy, shouldPopSad };
 };

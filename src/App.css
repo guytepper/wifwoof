@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: "Bangers", serif;
+  contain: paint;
 }
 /* @link https://utopia.fyi/type/calculator?c=320,32,1.125,1680,48,1.25,6,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
@@ -27,4 +28,11 @@ body {
 .price {
   font-size: var(--step-6);
   color: var(--gray-1);
+}
+
+header {
+  position: absolute;
+  top: 12.5px;
+  left: 12.5px;
+  opacity: 0.5;
 }
