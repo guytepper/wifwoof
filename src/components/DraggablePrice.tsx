@@ -47,7 +47,9 @@ export const DraggablePrice = ({ price, elementRef, position, setPosition }: Dra
       drag
       dragMomentum={false}
       whileDrag={{ scale: 1.1 }}
+      // @ts-expect-error
       initial={position}
+      // @ts-expect-error
       animate={position}
       transition={MOTION_SPRING}
       onDrag={handleDrag}
