@@ -3,9 +3,9 @@ import { usePrice, useThemeColor } from "@/hooks";
 import { motion } from "motion/react";
 import { PRICE_FORMAT } from "./constants";
 import NumberFlow, { continuous } from "@number-flow/react";
-import dog from "@/assets/dogwifhat_sticker.webp";
 import { SoundOnIcon, SoundOffIcon } from "@/components/Icons";
 
+import dog from "@/assets/dogwifhat.webp";
 import "@/App.css";
 
 const Price = motion.create(NumberFlow);
