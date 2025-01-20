@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 interface HoverButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export function HoverButton({ children, onClick }: HoverButtonProps) {
