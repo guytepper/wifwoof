@@ -47,7 +47,7 @@ function App() {
               OnboardingDialog.call();
             }}
           >
-            <PawIcon width={40} height={40} />
+            <PawIcon width={40} height={40} stroke="#fff" />
           </HoverButton>
         </motion.div>
       </header>

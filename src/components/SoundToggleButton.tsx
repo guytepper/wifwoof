@@ -14,7 +14,11 @@ export function SoundToggleButton({ isSoundOn, setIsSoundOn }: SoundToggleButton
       onClick={() => setIsSoundOn(!isSoundOn)}
     >
       <HoverButton>
-        {isSoundOn ? <SoundOffIcon width={40} height={40} /> : <SoundOnIcon width={40} height={40} />}
+        {isSoundOn ? (
+          <SoundOffIcon width={40} height={40} stroke="#fff" />
+        ) : (
+          <SoundOnIcon width={40} height={40} stroke="#fff" />
+        )}
       </HoverButton>
 
       <motion.div
@@ -24,7 +28,9 @@ export function SoundToggleButton({ isSoundOn, setIsSoundOn }: SoundToggleButton
         transition={{ duration: 0.3 }}
         style={{ cursor: "pointer" }}
       >
-        <span style={{ fontSize: "calc(var(--step-0) * 0.5)" }}>sound {isSoundOn ? "on" : "off"}</span>
+        <span style={{ fontSize: "calc(var(--step-0) * 0.5)", color: "#fff", userSelect: "none" }}>
+          sound {isSoundOn ? "on" : "off"}
+        </span>
       </motion.div>
     </div>
   );

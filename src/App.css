@@ -64,8 +64,8 @@ a:hover {
 
 .header {
   position: absolute;
-  top: 12.5px;
-  left: 12.5px;
+  top: 15px;
+  padding-inline: 8px;
   opacity: 0.75;
   display: flex;
   align-items: center;
@@ -75,7 +75,13 @@ a:hover {
 
 /* Fix for devices with notch */
 .landscape-right header {
-  left: max(12.5px, env(safe-area-inset-left));
+  padding-left: max(8px, calc(env(safe-area-inset-left) - 8px));
+  padding-right: 8px;
+}
+
+.landscape-left header {
+  padding-left: 8px;
+  padding-right: max(8px, calc(env(safe-area-inset-right) - 8px));
 }
 
 .dogwifhat {
