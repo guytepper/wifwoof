@@ -43,6 +43,9 @@ header {
   top: 12.5px;
   left: 12.5px;
   opacity: 0.5;
+/* Fix for devices with notch */
+.landscape-right header {
+  left: max(12.5px, env(safe-area-inset-left));
 }
 
 .dogwifhat {

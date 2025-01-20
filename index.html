@@ -60,5 +60,23 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.addEventListener("orientationchange", function () {
+        const body = document.body;
+
+        // Clear existing classes
+        body.classList.remove("landscape-left", "landscape-right");
+
+        // 90 is landscape right (clockwise), -90 is landscape left (counter-clockwise)
+        if (window.orientation === 90) {
+          body.classList.add("landscape-right");
+        } else if (window.orientation === -90) {
+          body.classList.add("landscape-left");
+        }
+      });
+
+      // Run once on load
+      window.dispatchEvent(new Event("orientationchange"));
+    </script>
   </body>
 </html>
