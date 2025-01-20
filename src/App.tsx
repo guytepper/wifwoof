@@ -5,13 +5,15 @@ import { PRICE_FORMAT } from "@/constants";
 import NumberFlow, { continuous } from "@number-flow/react";
 import { HoverButton, SoundToggleButton, DogWifHat, PawIcon } from "@/components";
 import { InfoDialog } from "@/components/InfoDialog";
+
 import toy from "@/assets/toy.mp3";
+import toy2 from "@/assets/toy2.mp3";
 
 import "@/App.css";
 
 const Price = motion.create(NumberFlow);
 const toySound = new Audio(toy);
-
+const toySound2 = new Audio(toy2);
 function App() {
   const [isSoundOn, setIsSoundOn] = useState(false);
   const { price, bgColor, shouldPopHappy, shouldPopSad } = usePrice({ mute: !isSoundOn });
@@ -29,13 +31,20 @@ function App() {
   return (
     <div className="App" style={{ backgroundColor: bgColor }}>
       <header className="header">
-        <SoundToggleButton isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
+        <motion.div whileHover={{ rotate: -5, scale: 1.01 }}>
+          <SoundToggleButton isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
+        </motion.div>
 
-        <div>
-          <HoverButton onClick={() => InfoDialog.call()}>
+        <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+          <HoverButton
+            onClick={() => {
+              toySound2.play();
+              InfoDialog.call();
+            }}
+          >
             <PawIcon width={40} height={40} />
           </HoverButton>
-        </div>
+        </motion.div>
       </header>
 
       <Price
