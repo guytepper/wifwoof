@@ -28,14 +28,18 @@ function App() {
     }
   }, [isSoundOn]);
 
+  // useEffect(() => {
+  //   InfoDialog.call();
+  // }, []);
+
   return (
     <div className="App" style={{ backgroundColor: bgColor }}>
       <header className="header">
-        <motion.div whileHover={{ rotate: -5, scale: 1.01 }}>
+        <motion.div whileHover={{ rotate: -7, scale: 1.05 }}>
           <SoundToggleButton isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
         </motion.div>
 
-        <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+        <motion.div whileHover={{ rotate: 10, scale: 1.1 }} whileTap={{ scale: 0.85 }}>
           <HoverButton
             onClick={() => {
               toySound2.play();
@@ -52,7 +56,10 @@ function App() {
         format={PRICE_FORMAT}
         plugins={[continuous]}
         className="price"
-        style={{ y: "-26vh", userSelect: "none" }}
+        style={{
+          y: "-26vh",
+          userSelect: "none",
+        }}
       />
 
       <DogWifHat shouldPopHappy={shouldPopHappy} shouldPopSad={shouldPopSad} />
