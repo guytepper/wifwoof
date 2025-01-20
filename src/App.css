@@ -31,6 +31,17 @@ html {
   background-color: var(--blue-9);
 }
 
+a {
+  color: var(--blue-9);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover {
+  color: var(--blue-10);
+  transform: scale(1.15) rotate(-10deg);
+}
+
 .App {
   text-align: center;
   display: flex;

@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { PRICE_FORMAT } from "@/constants";
 import NumberFlow, { continuous } from "@number-flow/react";
 import { HoverButton, SoundToggleButton, DogWifHat, PawIcon } from "@/components";
+import { InfoDialog } from "@/components/InfoDialog";
 import toy from "@/assets/toy.mp3";
 
 import "@/App.css";
@@ -31,7 +32,7 @@ function App() {
         <SoundToggleButton isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
 
         <div>
-          <HoverButton>
+          <HoverButton onClick={() => InfoDialog.call()}>
             <PawIcon width={40} height={40} />
           </HoverButton>
         </div>
@@ -46,6 +47,8 @@ function App() {
       />
 
       <DogWifHat shouldPopHappy={shouldPopHappy} shouldPopSad={shouldPopSad} />
+
+      <InfoDialog.Root />
     </div>
   );
 }

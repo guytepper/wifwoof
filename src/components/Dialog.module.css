@@ -1,0 +1,21 @@
+.dialogBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.dialogContent {
+  position: fixed;
+  z-index: 1;
+
+  width: 30vw;
+  min-width: 320px;
+  max-width: 500px;
+
+  padding: 32px;
+
+  background-color: white;
+
+  border: 8px dotted var(--pink-9);
+  border-radius: 5px;
+}
