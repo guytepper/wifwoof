@@ -12,6 +12,8 @@ const priceRef = ref(db, "price");
 
 export const usePrice = ({ mute }: { mute: boolean }) => {
   const [price, setPrice] = useState(0);
+  const [hourlyDelta, setHourlyDelta] = useState(0);
+  const [dailyDelta, setDailyDelta] = useState(0);
   const [prevPrice, setPrevPrice] = useState(0);
   const [bgColor, setBgColor] = useState("var(--blue-9)");
 
@@ -21,8 +23,14 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
   // Dummy price generator
   useEffect(() => {
     const unsubscribe = onValue(priceRef, (snapshot) => {
-      const { rate } = snapshot.val() as { rate: number };
+      const { rate, hourlyDelta, dailyDelta } = snapshot.val() as {
+        rate: number;
+        hourlyDelta: number;
+        dailyDelta: number;
+      };
       setPrice(rate);
+      setHourlyDelta(hourlyDelta);
+      setDailyDelta(dailyDelta);
     });
 
     return () => {
@@ -50,11 +58,18 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
         }
 
         setShouldPopSad(true);
-        setTimeout(() => setShouldPopSad(false), 500);
+        setTimeout(() => setShouldPopSad(false), 300);
       }
     }
     setPrevPrice(price);
   }, [price, prevPrice, mute]);
 
-  return { price, bgColor, shouldPopHappy, shouldPopSad };
+  return {
+    price,
+    bgColor,
+    shouldPopHappy,
+    shouldPopSad,
+    hourlyDelta,
+    dailyDelta,
+  };
 };
