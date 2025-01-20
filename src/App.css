@@ -2,6 +2,9 @@ body {
   margin: 0;
   font-family: "Bangers", serif;
   contain: paint;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow: hidden;
 }
 /* @link https://utopia.fyi/type/calculator?c=320,32,1.125,1680,48,1.25,6,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
@@ -16,6 +19,10 @@ body {
   --step-6: clamp(4.0546rem, 2.3159rem + 8.6936vw, 11.4441rem);
 }
 
+html {
+  background-color: var(--blue-9);
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -23,10 +30,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  height: -webkit-fill-available;
+  max-height: -webkit-fill-available;
+  overflow: hidden;
 }
 
 .price {
-  font-size: var(--step-6);
+  font-size: var(--step-5);
   color: var(--gray-1);
 }
 

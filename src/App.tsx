@@ -1,10 +1,11 @@
-import { usePrice } from "@/hooks/usePrice";
+import { useMemo, useState } from "react";
+import { usePrice, useThemeColor } from "@/hooks";
 import { motion } from "motion/react";
 import { PRICE_FORMAT } from "./constants";
 import NumberFlow, { continuous } from "@number-flow/react";
 import dog from "@/assets/dogwifhat_sticker.webp";
-import { useMemo, useState } from "react";
 import { SoundOnIcon, SoundOffIcon } from "@/components/Icons";
+
 import "@/App.css";
 
 const Price = motion.create(NumberFlow);
@@ -12,6 +13,7 @@ const Price = motion.create(NumberFlow);
 function App() {
   const [isSoundOn, setIsSoundOn] = useState(true);
   const { price, bgColor, shouldPopHappy, shouldPopSad } = usePrice({ mute: !isSoundOn });
+  useThemeColor(bgColor);
 
   const animateDog = useMemo(() => {
     if (shouldPopHappy) {
@@ -36,7 +38,7 @@ function App() {
   }, [shouldPopHappy, shouldPopSad]);
 
   return (
-    <div className="App" style={{ backgroundColor: bgColor, transition: "background-color 0.3s" }}>
+    <div className="App" style={{ backgroundColor: bgColor, transition: "background-color 0.6s" }}>
       <header>
         <motion.div
           whileHover={{ scale: 1.2, origin: "center", cursor: "pointer" }}
@@ -46,7 +48,7 @@ function App() {
         </motion.div>
       </header>
 
-      <Price value={price} format={PRICE_FORMAT} plugins={[continuous]} className="price" style={{ y: "-30vh" }} />
+      <Price value={price} format={PRICE_FORMAT} plugins={[continuous]} className="price" style={{ y: "-26vh" }} />
 
       <motion.div
         style={{ position: "absolute", y: "50vh" }}
@@ -55,7 +57,7 @@ function App() {
       >
         <img
           src={dog}
-          alt="dog wif hat"
+          alt="dogwifhat"
           style={{ width: "300px", height: "300px", userSelect: "none", pointerEvents: "none" }}
         />
       </motion.div>
