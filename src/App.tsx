@@ -6,7 +6,6 @@ import NumberFlow, { continuous } from "@number-flow/react";
 import { SoundOnIcon, SoundOffIcon, PawIcon } from "@/components/Icons";
 import toy from "@/assets/toy.mp3";
 
-import dog from "@/assets/dogwifhat.webp";
 import "@/App.css";
 import { HoverButton } from "./components/HoverButton";
 
@@ -62,7 +61,11 @@ function App() {
         animate={animateDog}
         whileHover={{ scale: 1.1, y: "45vh" }}
       >
-        <img src={dog} alt="dogwifhat" className="dogwifhat" />
+        <picture>
+          <source srcSet="/images/dogwifhat.avif" type="image/avif" />
+          <source srcSet="/images/dogwifhat.webp" type="image/webp" />
+          <img src="/images/dogwifhat.webp" alt="dogwifhat" className="dogwifhat" />
+        </picture>
       </motion.div>
     </div>
   );
