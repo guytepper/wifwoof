@@ -45,17 +45,16 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
   useEffect(() => {
     if (prevPrice > 0) {
       const percentageChange = ((price - prevPrice) / prevPrice) * 100;
-      if (percentageChange >= 0.05) {
-        setBgColor("var(--grass-9)");
-
+      if (percentageChange >= 0.01) {
         if (!mute) {
           barkSound.play();
         }
 
         setShouldPopHappy(true);
+        setBgColor("var(--grass-9)");
         setTimeout(() => setShouldPopHappy(false), 300);
         faviconElm.href = faviconEmoji("🐂");
-      } else if (percentageChange <= -0.05) {
+      } else if (percentageChange <= -0.01) {
         setBgColor("var(--tomato-9)");
 
         if (!mute) {
@@ -65,11 +64,9 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
         setShouldPopSad(true);
         setTimeout(() => setShouldPopSad(false), 300);
         faviconElm.href = faviconEmoji("🐻");
-      } else if (percentageChange < 0.01 && percentageChange > -0.01) {
-        faviconElm.href = faviconEmoji("🐕");
-        setBgColor("var(--blue-9)");
       }
     }
+
     setPrevPrice(price);
   }, [price, prevPrice, mute]);
 

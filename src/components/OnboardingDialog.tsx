@@ -8,16 +8,18 @@ export const OnboardingDialog = createCallable(({ call }) => {
       <div>
         <h2 style={{ fontSize: 48, margin: 0, fontWeight: 500 }}>welcome to wifwoof</h2>
         <h3 style={{ fontSize: 34, margin: 0, fontWeight: 500 }}>best site for best coin</h3>
-        <h3 style={{ fontSize: 34, margin: 0, fontWeight: 500, marginBottom: 16 }}>simple rules:</h3>
+        <h3 style={{ fontSize: 34, margin: 0, fontWeight: 500, marginBottom: 16, textDecoration: "underline" }}>
+          simple rules:
+        </h3>
 
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24 }}>
-            <span>price up</span>
-            <span>woof&nbsp;&nbsp;🌕</span>
+            <span>📈 price up</span>
+            <span>dog barks 🗣️</span>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24 }}>
-            <span>price down</span>
-            <span>hat stays on&nbsp;&nbsp;🎩 </span>
+            <span>📉 price down</span>
+            <span>dog whines 😢</span>
           </div>
         </div>
       </div>
