@@ -12,11 +12,17 @@
   min-width: 320px;
   max-width: 50vw;
 
-  padding: 32px;
+  padding: 16px;
   margin: 8px;
 
   background-color: white;
   outline: 8px dotted var(--pink-9);
   border-radius: 4px;
   box-shadow: 0 0 0 12px #fff;
+}
+
+@media (min-width: 768px) {
+  .dialogContent {
+    padding: 32px;
+  }
 }
