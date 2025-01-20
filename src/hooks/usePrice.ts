@@ -54,7 +54,7 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
 
         setShouldPopHappy(true);
         setTimeout(() => setShouldPopHappy(false), 300);
-        faviconElm.href = faviconEmoji("📈");
+        faviconElm.href = faviconEmoji("🐂");
       } else if (percentageChange <= -0.05) {
         setBgColor("var(--tomato-9)");
 
@@ -64,7 +64,10 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
 
         setShouldPopSad(true);
         setTimeout(() => setShouldPopSad(false), 300);
-        faviconElm.href = faviconEmoji("📉");
+        faviconElm.href = faviconEmoji("🐻");
+      } else if (percentageChange < 0.01 && percentageChange > -0.01) {
+        faviconElm.href = faviconEmoji("🐕");
+        setBgColor("var(--blue-9)");
       }
     }
     setPrevPrice(price);
