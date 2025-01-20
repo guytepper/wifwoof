@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { HoverButton } from "./HoverButton";
 import { SoundOffIcon, SoundOnIcon } from "./Icons";
 
