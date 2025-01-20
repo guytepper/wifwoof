@@ -10,6 +10,7 @@ export const PRICE_FORMAT = {
   currency: "USD",
   minimumFractionDigits: 5,
   maximumFractionDigits: 5,
+  currencyDisplay: "narrowSymbol",
 };
 
 export const ROTATION_ANGLES = {
