@@ -17,9 +17,9 @@ export function SoundToggleButton({ isSoundOn, setIsSoundOn }: SoundToggleButton
         {isSoundOn ? <SoundOffIcon width={40} height={40} /> : <SoundOnIcon width={40} height={40} />}
       </HoverButton>
 
-      <motion.div animate={{ scale: isSoundOn ? 0 : 1, opacity: isSoundOn ? 0 : 1 }} style={{ cursor: "pointer" }}>
+      {/* <motion.div animate={{ scale: isSoundOn ? 0 : 1, opacity: isSoundOn ? 0 : 1 }} style={{ cursor: "pointer" }}>
         <span style={{ fontSize: "calc(var(--step-0) * 0.5)" }}>turn barks on!</span>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 }

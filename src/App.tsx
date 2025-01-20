@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { PRICE_FORMAT } from "@/constants";
 import NumberFlow, { continuous } from "@number-flow/react";
 import { HoverButton, SoundToggleButton, DogWifHat, PawIcon } from "@/components";
-import { InfoDialog } from "@/components/InfoDialog";
+import { OnboardingDialog } from "@/components/OnboardingDialog";
 
 import toy from "@/assets/toy.mp3";
 import toy2 from "@/assets/toy2.mp3";
@@ -14,8 +14,9 @@ import "@/App.css";
 const Price = motion.create(NumberFlow);
 const toySound = new Audio(toy);
 const toySound2 = new Audio(toy2);
+
 function App() {
-  const [isSoundOn, setIsSoundOn] = useState(false);
+  const [isSoundOn, setIsSoundOn] = useState(true);
   const { price, bgColor, shouldPopHappy, shouldPopSad } = usePrice({ mute: !isSoundOn });
 
   useThemeColor(bgColor);
@@ -28,14 +29,14 @@ function App() {
     }
   }, [isSoundOn]);
 
-  // useEffect(() => {
-  //   InfoDialog.call();
-  // }, []);
+  useEffect(() => {
+    OnboardingDialog.call();
+  }, []);
 
   return (
     <div className="App" style={{ backgroundColor: bgColor }}>
       <header className="header">
-        <motion.div whileHover={{ rotate: -7, scale: 1.05 }}>
+        <motion.div whileHover={{ rotate: -1, scale: 1.05 }}>
           <SoundToggleButton isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
         </motion.div>
 
@@ -43,7 +44,7 @@ function App() {
           <HoverButton
             onClick={() => {
               toySound2.play();
-              InfoDialog.call();
+              OnboardingDialog.call();
             }}
           >
             <PawIcon width={40} height={40} />
@@ -64,7 +65,7 @@ function App() {
 
       <DogWifHat shouldPopHappy={shouldPopHappy} shouldPopSad={shouldPopSad} />
 
-      <InfoDialog.Root />
+      <OnboardingDialog.Root />
     </div>
   );
 }
