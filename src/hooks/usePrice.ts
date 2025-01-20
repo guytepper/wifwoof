@@ -41,7 +41,7 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
   useEffect(() => {
     if (prevPrice > 0) {
       const percentageChange = ((price - prevPrice) / prevPrice) * 100;
-      if (percentageChange >= 0.1) {
+      if (percentageChange >= 0.05) {
         setBgColor("var(--grass-9)");
 
         if (!mute) {
@@ -50,7 +50,7 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
 
         setShouldPopHappy(true);
         setTimeout(() => setShouldPopHappy(false), 300);
-      } else if (percentageChange <= -0.1) {
+      } else if (percentageChange <= -0.05) {
         setBgColor("var(--tomato-9)");
 
         if (!mute) {

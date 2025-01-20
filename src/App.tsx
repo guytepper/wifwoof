@@ -1,34 +1,62 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePrice, useThemeColor } from "@/hooks";
 import { motion } from "motion/react";
 import { PRICE_FORMAT } from "./constants";
 import NumberFlow, { continuous } from "@number-flow/react";
 import { SoundOnIcon, SoundOffIcon } from "@/components/Icons";
+import toy from "@/assets/toy.mp3";
 
 import dog from "@/assets/dogwifhat.webp";
 import "@/App.css";
 
 const Price = motion.create(NumberFlow);
 
+const toySound = new Audio(toy);
+
 function App() {
-  const [isSoundOn, setIsSoundOn] = useState(true);
+  const [isSoundOn, setIsSoundOn] = useState(false);
   const { price, bgColor, shouldPopHappy, shouldPopSad } = usePrice({ mute: !isSoundOn });
   const animateDog = useAnimateDog(shouldPopHappy, shouldPopSad);
 
   useThemeColor(bgColor);
 
+  useEffect(() => {
+    if (isSoundOn) {
+      toySound.pause();
+      toySound.currentTime = 0;
+      toySound.play().catch((err) => console.error("Error playing sound:", err));
+    }
+  }, [isSoundOn]);
+
   return (
     <div className="App" style={{ backgroundColor: bgColor, transition: "background-color 0.6s" }}>
       <header>
-        <motion.div
-          whileHover={{ scale: 1.2, origin: "center", cursor: "pointer" }}
-          onClick={() => setIsSoundOn(!isSoundOn)}
-        >
-          {isSoundOn ? <SoundOffIcon width={40} height={40} /> : <SoundOnIcon width={40} height={40} />}
-        </motion.div>
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem", userSelect: "none" }}>
+          <motion.div
+            whileHover={{ scale: 1, cursor: "pointer" }}
+            whileTap={{ scale: 0.85 }}
+            onClick={() => setIsSoundOn(!isSoundOn)}
+          >
+            {isSoundOn ? <SoundOffIcon width={40} height={40} /> : <SoundOnIcon width={40} height={40} />}
+          </motion.div>
+          <motion.div
+            animate={{
+              scale: isSoundOn ? 0 : 1,
+              opacity: isSoundOn ? 0 : 1,
+            }}
+          >
+            <span style={{ fontSize: "calc(var(--step-0) * 0.5)" }}>turn on the barks!</span>
+          </motion.div>
+        </div>
       </header>
 
-      <Price value={price} format={PRICE_FORMAT} plugins={[continuous]} className="price" style={{ y: "-26vh" }} />
+      <Price
+        value={price}
+        format={PRICE_FORMAT}
+        plugins={[continuous]}
+        className="price"
+        style={{ y: "-26vh", userSelect: "none" }}
+      />
 
       <motion.div
         style={{ position: "absolute", y: "50vh" }}
