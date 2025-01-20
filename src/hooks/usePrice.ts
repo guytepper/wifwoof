@@ -9,6 +9,11 @@ const barkSound = new Audio(bark);
 const sadDogSound = new Audio(sadDog);
 
 const priceRef = ref(db, "price");
+const faviconElm = document.querySelector(
+  `link[rel~="icon"]`
+) as HTMLLinkElement;
+const faviconEmoji = (emoji: string) =>
+  `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`;
 
 export const usePrice = ({ mute }: { mute: boolean }) => {
   const [price, setPrice] = useState(0);
@@ -20,7 +25,6 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
   const [shouldPopHappy, setShouldPopHappy] = useState(false);
   const [shouldPopSad, setShouldPopSad] = useState(false);
 
-  // Dummy price generator
   useEffect(() => {
     const unsubscribe = onValue(priceRef, (snapshot) => {
       const { rate, hourlyDelta, dailyDelta } = snapshot.val() as {
@@ -50,6 +54,7 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
 
         setShouldPopHappy(true);
         setTimeout(() => setShouldPopHappy(false), 300);
+        faviconElm.href = faviconEmoji("📈");
       } else if (percentageChange <= -0.05) {
         setBgColor("var(--tomato-9)");
 
@@ -59,6 +64,7 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
 
         setShouldPopSad(true);
         setTimeout(() => setShouldPopSad(false), 300);
+        faviconElm.href = faviconEmoji("📉");
       }
     }
     setPrevPrice(price);

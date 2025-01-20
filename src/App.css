@@ -38,11 +38,17 @@ html {
   color: var(--gray-1);
 }
 
-header {
+.header {
   position: absolute;
   top: 12.5px;
   left: 12.5px;
   opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 25px);
+}
+
 /* Fix for devices with notch */
 .landscape-right header {
   left: max(12.5px, env(safe-area-inset-left));

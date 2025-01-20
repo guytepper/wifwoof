@@ -3,11 +3,12 @@ import { usePrice, useThemeColor } from "@/hooks";
 import { motion } from "motion/react";
 import { PRICE_FORMAT } from "./constants";
 import NumberFlow, { continuous } from "@number-flow/react";
-import { SoundOnIcon, SoundOffIcon } from "@/components/Icons";
+import { SoundOnIcon, SoundOffIcon, PawIcon } from "@/components/Icons";
 import toy from "@/assets/toy.mp3";
 
 import dog from "@/assets/dogwifhat.webp";
 import "@/App.css";
+import { HoverButton } from "./components/HoverButton";
 
 const Price = motion.create(NumberFlow);
 
@@ -30,23 +31,21 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundColor: bgColor, transition: "background-color 0.6s" }}>
-      <header>
+      <header className="header">
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", userSelect: "none" }}>
-          <motion.div
-            whileHover={{ scale: 1, cursor: "pointer" }}
-            whileTap={{ scale: 0.85 }}
-            onClick={() => setIsSoundOn(!isSoundOn)}
-          >
+          <HoverButton onClick={() => setIsSoundOn(!isSoundOn)}>
             {isSoundOn ? <SoundOffIcon width={40} height={40} /> : <SoundOnIcon width={40} height={40} />}
+          </HoverButton>
+
+          <motion.div animate={{ scale: isSoundOn ? 0 : 1, opacity: isSoundOn ? 0 : 1 }}>
+            <span style={{ fontSize: "calc(var(--step-0) * 0.5)" }}>turn barks on!</span>
           </motion.div>
-          <motion.div
-            animate={{
-              scale: isSoundOn ? 0 : 1,
-              opacity: isSoundOn ? 0 : 1,
-            }}
-          >
-            <span style={{ fontSize: "calc(var(--step-0) * 0.5)" }}>turn on the barks!</span>
-          </motion.div>
+        </div>
+
+        <div>
+          <HoverButton onClick={() => {}}>
+            <PawIcon width={40} height={40} />
+          </HoverButton>
         </div>
       </header>
 
