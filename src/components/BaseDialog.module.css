@@ -13,9 +13,10 @@
   max-width: 500px;
 
   padding: 32px;
+  margin: 8px;
 
   background-color: white;
-
-  border: 8px dotted var(--pink-9);
-  border-radius: 5px;
+  outline: 8px dotted var(--pink-9);
+  border-radius: 4px;
+  box-shadow: 0 0 0 12px #fff;
 }

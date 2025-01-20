@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ReactCall } from "react-call";
-import styles from "./Dialog.module.css";
+import styles from "./BaseDialog.module.css";
 
 interface BaseDialogProps {
   children: React.ReactNode;
