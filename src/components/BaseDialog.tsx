@@ -20,7 +20,7 @@ export const BaseDialog = ({ children, call }: BaseDialogProps) => {
 
       <motion.div
         initial={{ y: "-90vh" }}
-        animate={{ y: call.ended ? "100vh" : -100 }}
+        animate={{ y: call.ended ? "100vh" : -50 }}
         transition={{
           type: "spring",
           damping: 21,

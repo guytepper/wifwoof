@@ -25,12 +25,10 @@ export function SoundToggleButton({ isSoundOn, setIsSoundOn }: SoundToggleButton
         key={isSoundOn ? "on" : "off"}
         initial={false}
         animate={{ opacity: [1, 1, 1, 0], x: isSoundOn ? [-10, 20] : [20, -10] }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.4 }}
         style={{ cursor: "pointer" }}
       >
-        <span style={{ fontSize: "calc(var(--step-0) * 0.5)", color: "#fff", userSelect: "none" }}>
-          sound {isSoundOn ? "on" : "off"}
-        </span>
+        <span style={{ fontSize: "calc(var(--step-0) * 0.5)", color: "#fff" }}>sound {isSoundOn ? "on" : "off"}</span>
       </motion.div>
     </div>
   );
