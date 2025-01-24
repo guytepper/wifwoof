@@ -1,0 +1,33 @@
+.title {
+  font-size: 48px;
+  margin: 0;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 34px;
+  margin: 0;
+  margin-bottom: 24px;
+  text-decoration: underline;
+}
+
+.rule {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+}
+
+.closeButton {
+  background-color: var(--pink-9);
+  color: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 24px;
+  width: 250px;
+  font-family: "Bangers", sans-serif;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px var(--pink-4), 0 0 0 6px var(--pink-9);
+}
