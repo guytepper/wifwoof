@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { createCallable } from "react-call";
-import { BaseDialog } from "./BaseDialog";
+import { BaseDialog } from "../BaseDialog/BaseDialog";
 
 export const OnboardingDialog = createCallable(({ call }) => {
   return (
