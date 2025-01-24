@@ -36,10 +36,9 @@ const useAnimateDog = (shouldPopHappy: boolean, shouldPopSad: boolean) => {
       return {
         scale: 1,
         y: "50vh",
-        rotate: [0, -5, 5, -5, 5, 0],
+        rotate: [0, -7, 9, -5, 6, 0],
         transition: {
           rotate: {
-            repeat: Infinity,
             duration: 0.5,
             ease: "linear",
           },
