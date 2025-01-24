@@ -9,16 +9,12 @@ const barkSound = new Audio(bark);
 const sadDogSound = new Audio(sadDog);
 
 const priceRef = ref(db, "price");
-const faviconElm = document.querySelector(
-  `link[rel~="icon"]`
-) as HTMLLinkElement;
+const faviconElm: HTMLLinkElement = document.querySelector('link[rel~="icon"]');
 const faviconEmoji = (emoji: string) =>
   `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`;
 
 export const usePrice = ({ mute }: { mute: boolean }) => {
   const [price, setPrice] = useState(0);
-  const [hourlyDelta, setHourlyDelta] = useState(0);
-  const [dailyDelta, setDailyDelta] = useState(0);
   const [prevPrice, setPrevPrice] = useState(0);
   const [bgColor, setBgColor] = useState("var(--blue-9)");
 
@@ -26,16 +22,27 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
   const [shouldPopSad, setShouldPopSad] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onValue(priceRef, (snapshot) => {
-      const { rate, hourlyDelta, dailyDelta } = snapshot.val() as {
-        rate: number;
-        hourlyDelta: number;
-        dailyDelta: number;
+    let unsubscribe: () => void;
+
+    // Mock price for development
+    if (import.meta.env.MODE === "development") {
+      const updatePrice = () => {
+        const newPrice = Math.random() * (1.422421 - 1.412381) + 1.412381;
+        setPrice(newPrice);
       };
-      setPrice(rate);
-      setHourlyDelta(hourlyDelta);
-      setDailyDelta(dailyDelta);
-    });
+
+      const intervalId = setInterval(updatePrice, 10000); // Update price every 10 seconds
+      updatePrice(); // Update price initially
+      unsubscribe = () => {
+        clearInterval(intervalId);
+      };
+    } else {
+      // Listen to price changes from Firebase Realtime Database
+      unsubscribe = onValue(priceRef, (snapshot) => {
+        const { rate } = snapshot.val() as { rate: number };
+        setPrice(rate);
+      });
+    }
 
     return () => {
       unsubscribe();
@@ -70,12 +77,5 @@ export const usePrice = ({ mute }: { mute: boolean }) => {
     setPrevPrice(price);
   }, [price, prevPrice, mute]);
 
-  return {
-    price,
-    bgColor,
-    shouldPopHappy,
-    shouldPopSad,
-    hourlyDelta,
-    dailyDelta,
-  };
+  return { price, bgColor, shouldPopHappy, shouldPopSad };
 };

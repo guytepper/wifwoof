@@ -15,6 +15,10 @@ bun dev
 
 If you encounter any issues during installation and would like to contribute, please don't hesitate to reach out!
 
+> [!NOTE]  
+> Price updates are mocked in development mode, so you can develop hassle free.  
+> We use Firebase Realtime Database to listen to price changes in production.
+
 
 ## License
 The source code is released under the AGPL-3.0 license. The project assets are outside the scope of the license.
