@@ -1,8 +1,23 @@
 import { motion } from "framer-motion";
 import { createCallable } from "react-call";
 import { BaseDialog } from "../BaseDialog/BaseDialog";
+import toy2 from "@/assets/toy2.mp3";
+import { useMemo } from "react";
+
+// We only want to play the sound initially - the same sound is played when the "paw" button is clicked
+let hasPlayed = false;
 
 export const OnboardingDialog = createCallable(({ call }) => {
+  const audioRef = useMemo(() => new Audio(toy2), []);
+
+  const close = () => {
+    if (!hasPlayed) {
+      audioRef.play();
+      hasPlayed = true;
+    }
+    call.end();
+  };
+
   return (
     <BaseDialog call={call}>
       <div>
@@ -24,7 +39,7 @@ export const OnboardingDialog = createCallable(({ call }) => {
         </div>
       </div>
       <motion.button
-        onClick={() => call.end()}
+        onClick={close}
         style={{
           backgroundColor: "var(--pink-9)",
           color: "white",
