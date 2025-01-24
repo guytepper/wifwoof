@@ -90,3 +90,10 @@ a:hover {
   user-select: none;
   pointer-events: none;
 }
+
+@media (min-width: 1600px) and (min-height: 800px) {
+  .dogwifhat {
+    width: 420px;
+    height: 420px;
+  }
+}
