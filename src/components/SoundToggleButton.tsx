@@ -15,9 +15,9 @@ export function SoundToggleButton({ isSoundOn, setIsSoundOn }: SoundToggleButton
     >
       <HoverButton>
         {isSoundOn ? (
-          <SoundOffIcon width={40} height={40} stroke="#fff" />
-        ) : (
           <SoundOnIcon width={40} height={40} stroke="#fff" />
+        ) : (
+          <SoundOffIcon width={40} height={40} stroke="#fff" />
         )}
       </HoverButton>
 
