@@ -42,7 +42,7 @@ a {
 }
 
 a:hover {
-  color: var(--blue-10);
+  color: var(--blue-11);
   transform: scale(1.15) rotate(-10deg);
 }
 
