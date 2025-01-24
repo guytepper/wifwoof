@@ -19,7 +19,7 @@ export function DogWifHat(props: DogWifHatProps) {
       <picture>
         <source srcSet="/images/dogwifhat.avif" type="image/avif" />
         <source srcSet="/images/dogwifhat.webp" type="image/webp" />
-        <img src="/images/dogwifhat.webp" alt="dogwifhat" className="dogwifhat" />
+        <img src="/images/dogwifhat.webp" alt="dogwifhat" className="achi" />
       </picture>
     </motion.div>
   );

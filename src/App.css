@@ -84,7 +84,7 @@ a:hover {
   padding-right: max(8px, calc(env(safe-area-inset-right) - 8px));
 }
 
-.dogwifhat {
+.achi {
   width: 300px;
   height: 300px;
   user-select: none;
@@ -92,7 +92,7 @@ a:hover {
 }
 
 @media (min-width: 1600px) and (min-height: 800px) {
-  .dogwifhat {
+  .achi {
     width: 420px;
     height: 420px;
   }
