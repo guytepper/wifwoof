@@ -6,20 +6,7 @@
   src: url("/fonts/bangers-v24-latin-regular.woff2");
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Bangers", serif;
-  contain: paint;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  overflow: hidden;
-}
 /* @link https://utopia.fyi/type/calculator?c=320,32,1.125,1680,48,1.25,6,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-
 :root {
   --step--1: clamp(1.7778rem, 1.6314rem + 0.732vw, 2.4rem);
   --step-0: clamp(2rem, 1.7647rem + 1.1765vw, 3rem);
@@ -29,10 +16,36 @@ body {
   --step-4: clamp(3.2036rem, 2.2341rem + 4.8478vw, 7.3242rem);
   --step-5: clamp(3.6041rem, 2.2979rem + 6.5308vw, 9.1553rem);
   --step-6: clamp(4.0546rem, 2.3159rem + 8.6936vw, 11.4441rem);
+
+  --blue-9: #0090ff;
+  --blur-10: #0588f0;
+  --blue-11: #0d74ce;
+
+  --gray-1: #fafafa;
+
+  --grass-9: #46a758;
+
+  --pink-4: #fbdcef;
+  --pink-9: #d6409f;
+
+  --tomato-9: #e54d2e;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   background-color: var(--blue-9);
+}
+
+body {
+  margin: 0;
+  font-family: "Bangers", serif;
+  contain: paint;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow: hidden;
 }
 
 a {
